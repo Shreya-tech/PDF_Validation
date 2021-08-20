@@ -1,15 +1,11 @@
 package utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.*;
 
 public class DataProperties {
 
 	private String sectionName;
-	private Map<String, String> contents = new HashMap<String, String>();
+	private Map<String, String> contents = new HashMap<>();
 
 	public DataProperties(String section_name, Map<String, String> content) {
 		this.sectionName = section_name;
@@ -51,15 +47,15 @@ public class DataProperties {
 	}
 
 	public static Boolean Compare(DataProperties a, DataProperties b) {
-		Boolean check = false;
+		boolean check = false;
 		
-		if (a.getSectionName() == b.getSectionName()) {
+		if (Objects.equals(a.getSectionName(), b.getSectionName())) {
 			Set <String> setA = a.getContent().keySet();
 			Set <String> setB = b.getContent().keySet();
 			
 			for(String keyA : setA) {
 				for(String keyB : setB) {
-					if(keyA == keyB) {
+					if(Objects.equals(keyA, keyB)) {
 						
 						String valueA = a.getContent().get(keyA);
 						String valueB = b.getContent().get(keyB);
@@ -67,12 +63,11 @@ public class DataProperties {
 						check = valueB.contains(valueA);
 						System.out.println("value A : "+valueA+"\t value B: "+valueB);
 						System.out.println("------> "+check);
-						if(check==false)
+						if(!check)
 							break;
 					}
 				}
 			}
-//			System.out.println(a.getContent().equals(b.getContent()));
 			
 		}
 		return check;
