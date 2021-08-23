@@ -30,6 +30,9 @@ public class DataProperties {
 		return contents;
 	}
 
+	public String getValueOf(String key){
+		return contents.get(key);
+	}
 	// --- Display
 	public void Display() {
 		System.out.print(this.sectionName);
